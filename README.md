@@ -1,3 +1,5 @@
 # form-server
 [![Build Status](https://travis-ci.com/mahsheikhdir/form-server.svg?branch=master)](https://travis-ci.com/mahsheikhdir/form-server)
 [![Coverage Status](https://coveralls.io/repos/github/mahsheikhdir/form-server/badge.svg?branch=master)](https://coveralls.io/github/mahsheikhdir/form-server?branch=master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/c09c0a7f517fa712543d/maintainability)](https://codeclimate.com/github/mahsheikhdir/form-server/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/c09c0a7f517fa712543d/test_coverage)](https://codeclimate.com/github/mahsheikhdir/form-server/test_coverage)
