@@ -6,7 +6,6 @@ import {
   
   before(async () => {
     await createTables();
-    await insertIntoTables();
   });
   
   after(async () => {

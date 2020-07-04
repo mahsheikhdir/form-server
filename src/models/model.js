@@ -1,4 +1,5 @@
 import { pool } from './pool';
+import {Logger} from '../utils/logger';
 
 class Model {
   constructor(table) {
@@ -9,7 +10,8 @@ class Model {
 
   async select(columns, clause) {
     let query = `SELECT ${columns} FROM ${this.table}`;
-    if (clause) query += clause;
+    if (clause) query += " " + clause;
+    Logger(query);
     return this.pool.query(query);
   }
 
@@ -19,6 +21,7 @@ class Model {
           VALUES (${values})
           RETURNING id, ${columns}
       `;
+    Logger(query);
     return this.pool.query(query);
   }
 }
