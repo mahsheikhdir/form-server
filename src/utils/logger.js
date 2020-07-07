@@ -1,4 +1,4 @@
-const shouldLog = true;
+const shouldLog = false;
 
 export const Logger = (log) => {
   if (shouldLog) {

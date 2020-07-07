@@ -6,7 +6,7 @@ dotenv.config();
 
 const p = pgp({
   query(e) {
-    console.log(e.query);
+    //console.log(e.query);
   }
 });
 

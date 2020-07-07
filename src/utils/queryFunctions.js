@@ -15,14 +15,12 @@ export const queryDatabase = async arr => {
   return Promise.all([ queries ]);
 };
 
-export const queryDatabase2 = async arr => new Promise((resolve) => {
+export const queryDatabase2 = async arr => {
   for (let i = 0; i < arr.length; i++) {
-    console.log(arr[i]);
-    const val = pool.query(arr[i]);
-    console.log(val);
+    //console.log(arr[i]);
+    const val = await pool.query(arr[i]);
   }
-  resolve('Queried Database');
-});
+};
 
 export const dropTables = () => queryDatabase2([
   dropSitesTable,
