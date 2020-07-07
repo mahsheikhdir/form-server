@@ -26,9 +26,9 @@ class Model {
     return this.pool.query(query);
   }
 
-  async appendJSON(id, data, form){
+  async appendJSON(id, data, form) {
     let field = 'default';
-    if(form) field = form;
+    if (form) field = form;
     const works = `
           UPDATE sites
           SET form_data = (
@@ -42,7 +42,7 @@ class Model {
           RETURNING id, form_data->'${field}';
     `;
 
-  const append = `
+    const append = `
     UPDATE sites
     SET form_data = (
       CASE
@@ -55,20 +55,17 @@ class Model {
     RETURNING id, form_data->$<field>;
 `;
     const values = {
-      field: field,
+      field,
       rawField: {
-        toPostgres: a => {
-          return field;
-        },
-        rawType: true
+        toPostgres: (a) => field,
+        rawType: true,
       },
       data: JSON.stringify(data),
-      dataArray: JSON.stringify([data]),
-      id: id
-    }
-    return this.pool.query(append,values);
+      dataArray: JSON.stringify([ data ]),
+      id,
+    };
+    return this.pool.query(append, values);
   }
-  
 }
 
 export default Model;

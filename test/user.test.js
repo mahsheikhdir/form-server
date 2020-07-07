@@ -8,7 +8,6 @@ describe('User creation and authentication', () => {
             .expect(200)
             .end((err, res) => {
                 expect(res.status).to.equal(201);
-                expect(res.body).to.have.property('createdUser');
                 done();
             })
     });
@@ -39,6 +38,6 @@ describe('User creation and authentication', () => {
             })
     });
 
-    
+
   
 });

@@ -1,8 +1,5 @@
 import { pool } from '../models/pool';
 import {
-  insertMessages,
-  dropMessagesTable,
-  createMessageTable,
   createUserTable,
   dropUserTable,
   createSitesTable,
@@ -18,21 +15,19 @@ export const queryDatabase = async arr => {
   return Promise.all([ queries ]);
 };
 
-export const queryDatabase2 = async arr => {
-  return new Promise(async (resolve) => {
-    for (let i=0; i < arr.length; i++){
-      console.log(arr[i]);
-      const val = await pool.query(arr[i]);
-      console.log(val);
-    }
-    resolve('Queried Database');
-  })
-}
+export const queryDatabase2 = async arr => new Promise((resolve) => {
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+    const val = pool.query(arr[i]);
+    console.log(val);
+  }
+  resolve('Queried Database');
+});
 
 export const dropTables = () => queryDatabase2([
   dropSitesTable,
   dropUserTable
- ]);
+]);
 export const createTables = async () => queryDatabase2([
   createUserTable,
   createSitesTable

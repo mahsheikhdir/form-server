@@ -4,10 +4,10 @@ import { connectionString } from '../settings';
 
 dotenv.config();
 
-let p =  pgp({
-    query(e) {
-        console.log(e.query);
-    }
+const p = pgp({
+  query(e) {
+    console.log(e.query);
+  }
 });
 
 export const pool = p(connectionString);

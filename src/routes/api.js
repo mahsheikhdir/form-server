@@ -1,5 +1,5 @@
 import express from 'express';
-import { newFormSubmit, formSubmit} from '../controllers';
+import { newFormSubmit, formSubmit } from '../controllers';
 
 const apiRouter = express.Router();
 

@@ -1,5 +1,4 @@
-import bcrypt, { hash } from 'bcrypt';
-import crypto from 'crypto';
+import bcrypt from 'bcrypt';
 import Model from '../models/model';
 
 const usersModel = new Model('users');
