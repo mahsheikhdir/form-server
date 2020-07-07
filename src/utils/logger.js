@@ -1,7 +1,7 @@
-const shouldLog = false;
+const shouldLog = true;
 
 export const Logger = (log) => {
-  if (shouldLog) {
+  if (!shouldLog) {
     console.log(log);
   }
 };
