@@ -28,6 +28,7 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "pg": "^8.2.1",
+    "pg-promise": "^10.5.7",
     "session": "^0.1.0"
   },
   "devDependencies": {

@@ -4,7 +4,11 @@ import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
 import indexRouter from './routes/index';
+import userRouter from './routes/user';
+import sitesRouter from './routes/sites';
+import apiRouter from './routes/api';
 import { passportInitialize } from './middleware';
+import { sessionSecret } from './settings';
 
 const app = express();
 app.use(logger('dev'));
@@ -13,9 +17,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use(session({
-  secret: 'secret',
+  secret: sessionSecret,
   resave: false,
   saveUninitialized: false,
+  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }
 }));
 
 passportInitialize(passport);
@@ -23,7 +28,12 @@ passportInitialize(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/v1', indexRouter);
+const version = '/v1';
+
+app.use(version, indexRouter);
+app.use(version, userRouter);
+app.use(version, sitesRouter);
+app.use(version, apiRouter);
 
 app.use((err, req, res, next) => {
   res.status(400).json({ error: err.stack });

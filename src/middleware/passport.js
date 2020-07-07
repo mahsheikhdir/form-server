@@ -8,10 +8,9 @@ const userModel = new Model('users');
 export const passportInitialize = (passport) => {
   passport.use(new LocalStrategy(
     (username, password, done) => {
-      console.log('Authenticating user...', username, password);
       userModel.select('*', `WHERE username = '${username}'`).then((result) => {
-        if (result.rows.length > 0) {
-          const user = result.rows[0];
+        if (result.length > 0) {
+          const user = result[0];
           console.log(user);
 
           bcrypt.compare(password, user.password, (err, match) => {
@@ -37,8 +36,14 @@ export const passportInitialize = (passport) => {
   });
 
   passport.deserializeUser((id, done) => {
-    userModel.select('*', `WHERE id = ${id}`).then((result) => {
-      return done(null, result.rows[0]);
-    });
+    userModel.select('*', `WHERE id = ${id}`).then((result) => done(null, result[0]));
   });
+};
+
+export const isAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    return res.status(403).send({ message: 'Not authenticated' });
+  }
 };
