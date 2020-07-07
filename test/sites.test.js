@@ -4,7 +4,7 @@ describe('Sites ', () => {
 
     it('Asks for authentication', done => {
         request
-            .post(`${BASE_URL}/sites`)
+            .post(`${BASE_URL}/projects`)
             .expect(403)
             .end((err, res) => {
                 expect(res.body.message).equal('Not authenticated');
@@ -51,11 +51,11 @@ describe('Sites ', () => {
       it('User creates a site', (done) => {
         const data = { name: 'mysite'};
         request
-          .post(`${BASE_URL}/sites`)
+          .post(`${BASE_URL}/projects`)
           .send(data)
           .expect(200)
           .end((err, res) => {
-            api_key = res.body.newSite[0].api_key;
+            api_key = res.body.newProject[0].api_key;
             console.log(api_key);
             done();
           });
@@ -74,10 +74,10 @@ describe('Sites ', () => {
 
       it('Retrives the users sites and new data', (done) => {
         request
-          .get(`${BASE_URL}/sites`)
+          .get(`${BASE_URL}/projects`)
           .expect(200)
           .end((err, res) => {
-            expect(res.body.sites[0]['form_data']['default'][0]).to.deep.equal({name: 'matt', comment: "nice website"});
+            expect(res.body.projects[0]['form_data']['default'][0]).to.deep.equal({name: 'matt', comment: "nice website"});
             done();
           });
       });

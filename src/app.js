@@ -4,7 +4,7 @@ import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
 import userRouter from './routes/user';
-import sitesRouter from './routes/sites';
+import projectRouter from './routes/projects';
 import apiRouter from './routes/api';
 import { passportInitialize } from './middleware';
 import { sessionSecret } from './settings';
@@ -30,7 +30,7 @@ app.use(passport.session());
 const version = '/v1';
 
 app.use(version, userRouter);
-app.use(version, sitesRouter);
+app.use(version, projectRouter);
 app.use(version, apiRouter);
 
 app.use((err, req, res, next) => {

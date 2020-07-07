@@ -27,9 +27,9 @@ CREATE TABLE IF NOT EXISTS users (
 
 export const dropUserTable = 'DROP TABLE users;';
 
-export const createSitesTable = `
-DROP TABLE IF EXISTS sites;
-CREATE TABLE IF NOT EXISTS sites (
+export const createProjectTable = `
+DROP TABLE IF EXISTS project;
+CREATE TABLE IF NOT EXISTS project (
   id SERIAL PRIMARY KEY,
   name VARCHAR NOT NULL,
   api_key VARCHAR NOT NULL,
@@ -38,4 +38,4 @@ CREATE TABLE IF NOT EXISTS sites (
   )
 `;
 
-export const dropSitesTable = 'DROP TABLE sites;';
+export const dropProjectTable = 'DROP TABLE project;';

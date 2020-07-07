@@ -1,3 +1,3 @@
 export * from './api';
-export * from './sites';
+export * from './projects';
 export * from './user';

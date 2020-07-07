@@ -1,9 +1,10 @@
 import { pool } from '../models/pool';
 import {
-  createUserTable,
   dropUserTable,
   createSitesTable,
-  dropSitesTable,
+  dropProjectTable,
+  createProjectTable,
+  createUserTable,
 } from './queries';
 
 export const queryDatabase = async arr => {
@@ -14,10 +15,10 @@ export const queryDatabase = async arr => {
 };
 
 export const dropTables = () => queryDatabase([
-  dropSitesTable,
+  dropProjectTable,
   dropUserTable
 ]);
 export const createTables = async () => queryDatabase([
   createUserTable,
-  createSitesTable
+  createProjectTable,
 ]);

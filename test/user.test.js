@@ -8,6 +8,30 @@ describe('User creation and authentication', () => {
             .expect(200)
             .end((err, res) => {
                 expect(res.status).to.equal(201);
+                expect(res.body).to.have.nested.property('createdUser[0].username', 'mahdir');
+                expect(res.body).to.have.nested.property('createdUser[0].email', 'mahdir@email.com');
+                done();
+            })
+    });
+
+    it('does not register user with space in name', done => {
+        const data = {username: 'mah dir', password: 'a_bad_password', email : "mahdir@email.com"}
+        request
+            .post(`${BASE_URL}/register`)
+            .send(data)
+            .expect(400)
+            .end((err, res) => {
+                done();
+            })
+    });
+
+    it('does not register user with same name', done => {
+        const data = {username: 'mah dir', password: 'a_bad_password', email : "mahdir@email.com"}
+        request
+            .post(`${BASE_URL}/register`)
+            .send(data)
+            .expect(400)
+            .end((err, res) => {
                 done();
             })
     });
@@ -20,7 +44,8 @@ describe('User creation and authentication', () => {
             .expect(200)
             .end((err, res) => {
                 expect(res.status).to.equal(200);
-                expect(res.body).to.have.property('loggedInUser');
+                expect(res.body).to.have.nested.property('loggedInUser.username', 'mahdir');
+                expect(res.body).to.have.nested.property('loggedInUser.email', 'mahdir@email.com');
                 done();
             })
     });
@@ -44,7 +69,6 @@ describe('User creation and authentication', () => {
             .expect(200)
             .end((err, res) => {
                 if(err) done(err);
-                console.log(res.body);
                 expect(res.status).to.equal(200);
                 expect(res.body).to.have.property('users');
                 expect(res.body.users[0].username).to.deep.equal('john');
