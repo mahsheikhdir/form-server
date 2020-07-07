@@ -7,7 +7,7 @@ export const allUsers = async (req, res) => {
   try {
     console.log(req.host, req.origin);
     const data = await usersModel.select('*');
-    res.status(200).json({ users: data.rows });
+    res.status(200).json({ users: data });
   } catch (error) {
     res.status(200).json({ message: error.stack });
   }

@@ -3,7 +3,6 @@ import express from 'express';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
-import indexRouter from './routes/index';
 import userRouter from './routes/user';
 import sitesRouter from './routes/sites';
 import apiRouter from './routes/api';
@@ -30,7 +29,6 @@ app.use(passport.session());
 
 const version = '/v1';
 
-app.use(version, indexRouter);
 app.use(version, userRouter);
 app.use(version, sitesRouter);
 app.use(version, apiRouter);
