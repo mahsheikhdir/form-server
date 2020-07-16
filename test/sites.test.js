@@ -72,16 +72,6 @@ describe('Sites ', () => {
           });
       });
 
-      it('Retrives the users sites and new data', (done) => {
-        request
-          .get(`${BASE_URL}/projects`)
-          .expect(200)
-          .end((err, res) => {
-            expect(res.body.projects[0]['form_data']['default'][0]).to.deep.equal({name: 'matt', comment: "nice website"});
-            done();
-          });
-      });
-
       it('User sends data to site with form', (done) => {
         let data = {name: 'matt', comment: "nice website"};
         request
