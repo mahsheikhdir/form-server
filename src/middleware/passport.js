@@ -41,6 +41,7 @@ export const passportInitialize = (passport) => {
 };
 
 export const isAuthenticated = (req, res, next) => {
+  
   if (req.isAuthenticated()) {
     next();
   } else {

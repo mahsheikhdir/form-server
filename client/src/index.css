@@ -1,0 +1,24 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.login-form {
+    width: 400px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+.tab-border{
+    border-style: solid;
+    border-width: 0px 1px 1px 1px;
+    border-color: #dee2e6;
+    padding: 50px;
+}
+
+.simple-border {
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #dee2e6;
+    padding: 20px;
+}

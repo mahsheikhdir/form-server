@@ -12,6 +12,14 @@ export const allProjects = async (req, res) => {
   }
 };
 
+export const allProjectsInfo = async (req, res) => {
+  try {
+    const data = await sitesModel.select('id, name, api_key, Array(SELECT jsonb_object_keys(form_data)) as forms, octet_length(form_data::text) as size', `WHERE user_id = ${req.user.id} ORDER BY id ASC`);
+    res.status(200).send({ projects: data });
+  } catch (error) {
+    res.status(500).send({ message: error.stack });
+  }
+};
 export const addProject = async (req, res) => {
   const { name } = req.body;
   const api_key = crypto.randomBytes(24);

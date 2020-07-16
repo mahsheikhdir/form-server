@@ -12,6 +12,14 @@ export const allUsers = async (req, res) => {
   }
 };
 
+export const loggedIn = async (req, res) => {
+  try {
+    res.status(200).json({loggedIn: true, user: req.user});
+  } catch (error) {
+    res.status(500).json({message: error.stack});
+  }
+}
+
 export const registerNewUser = async (req, res) => {
   const { username, email, password } = req.body;
 
