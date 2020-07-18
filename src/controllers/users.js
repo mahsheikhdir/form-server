@@ -23,7 +23,7 @@ export const loggedIn = async (req, res) => {
 export const registerNewUser = async (req, res) => {
   const { username, email, password } = req.body;
 
-  if (typeof username === 'undefined' || typeof email === 'undefined' || typeof password === 'undefined') {
+  if (username == "" || email == "" || password == "") {
     return res.status(400).send({ message: 'Invalid or missing values' });
   }
 

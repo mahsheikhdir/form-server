@@ -2,6 +2,7 @@ import logger from 'morgan';
 import express from 'express';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
+import path from 'path';
 import passport from 'passport';
 import userRouter from './routes/user';
 import projectRouter from './routes/projects';
@@ -27,11 +28,17 @@ passportInitialize(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(express.static(path.join(__dirname, '../client/build')));
+
 const version = '/v1';
 
 app.use(version, userRouter);
 app.use(version, projectRouter);
 app.use(version, apiRouter);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
 app.use((err, req, res, next) => {
   res.status(400).json({ error: err.stack });

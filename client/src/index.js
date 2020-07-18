@@ -62,8 +62,8 @@ function Header(props) {
         <Navbar.Brand href="/">{'JSONStore { }'}</Navbar.Brand>
         <Nav className="ml-auto">
           <Nav.Link href="/login">Login</Nav.Link>
-          <Nav.Link href="/register">Register</Nav.Link>
-          <Nav.Link href="/private">Pri</Nav.Link>
+          <Nav.Link href="/register">Register</Nav.Link>  
+          <Nav.Link href="/private">Dashboard</Nav.Link>
           <Nav.Link href="/logout">Logout</Nav.Link>
         </Nav>
       </Navbar>

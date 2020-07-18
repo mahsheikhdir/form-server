@@ -20,6 +20,26 @@ export const allProjectsInfo = async (req, res) => {
     res.status(500).send({ message: error.stack });
   }
 };
+
+export const getProjectData = async (req, res) => {
+  try {
+    const data = await sitesModel.select('*', `WHERE user_id = ${req.user.id} and id = ${req.params.projectId}`);
+    res.status(200).send({ project: data });
+  } catch (error) {
+    res.status(500).send({ message: error.stack });
+  }
+};
+
+export const getFormData = async (req, res) => {
+  try {
+    const data = await sitesModel.select(`form_data->'${req.params.form}'`, `WHERE user_id = ${req.user.id} and id = ${req.params.projectId}`);
+    res.status(200).send({ data: data[0]['?column?'] });
+  } catch (error) {
+    res.status(500).send({ message: error.stack });
+  }
+};
+
+
 export const addProject = async (req, res) => {
   const { name } = req.body;
   const api_key = crypto.randomBytes(24);

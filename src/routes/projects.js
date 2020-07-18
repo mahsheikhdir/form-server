@@ -1,5 +1,5 @@
 import express from 'express';
-import { allProjects, addProject, allProjectsInfo } from '../controllers';
+import { allProjects, addProject, allProjectsInfo, downloadProjectData, getProjectData, getFormData } from '../controllers';
 import { isAuthenticated } from '../middleware/passport';
 import cors from 'cors';
 
@@ -13,4 +13,6 @@ projectRouter.use(cors({
 
 projectRouter.get('/projects', isAuthenticated, allProjectsInfo);
 projectRouter.post('/projects', isAuthenticated, addProject);
+projectRouter.get('/project/:projectId', isAuthenticated, getProjectData);
+projectRouter.get('/project/:projectId/:form', isAuthenticated, getFormData);
 export default projectRouter;

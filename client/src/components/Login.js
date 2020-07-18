@@ -1,8 +1,7 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-
-import {useHistory} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -13,6 +12,7 @@ class Login extends React.Component {
         username: '',
         password: '',
         redirect: null,
+        error: null,
       };
 
       
@@ -21,12 +21,16 @@ class Login extends React.Component {
     }
   
     handleSubmit(event) {
-      console.log(this.state);
       event.preventDefault();
 
       axios.post("/login", {username: this.state.username, password: this.state.password}, {withCredentials: true}).then(res => {
           if(res.status == 200){
+            this.setState({
+              redirect: '/private'
+          })
           }
+      }).catch((err) => {
+        this.setState({error: err.response.data.message})
       })
     }
   
@@ -44,6 +48,7 @@ class Login extends React.Component {
       return (
         <Form onSubmit={this.handleSubmit} className="login-form">
         <h1>Login</h1>
+        
           <Form.Group>
             <Form.Label>Username</Form.Label>
             <Form.Control
@@ -64,7 +69,9 @@ class Login extends React.Component {
           <Button variant="primary" type="submit">
             Submit
           </Button>
-          
+          <br /><br />
+          {(this.state.error !== null) && <small style={{color: "red"}}>{this.state.error}</small>}
+          {(this.state.redirect == null) ? <Redirect to="/login"/> : <Redirect to={this.state.redirect}/> }
         </Form>
       );
     }

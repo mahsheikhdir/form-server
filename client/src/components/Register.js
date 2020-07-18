@@ -12,6 +12,7 @@ class Register extends React.Component {
         username: '',
         email: '',
         password: '',
+        error: null,
       };
   
       this.handleInputChange = this.handleInputChange.bind(this);
@@ -34,7 +35,9 @@ class Register extends React.Component {
                 redirect: '/register'
             })
           }
-      })
+      }).catch((err) => {
+        this.setState({error: err.response.data.message})
+      }) 
     }
   
     handleInputChange(event) {
@@ -80,6 +83,8 @@ class Register extends React.Component {
           <Button variant="primary" type="submit">
             Submit
           </Button>
+          <br /><br />
+          {(this.state.error !== null) && <small style={{color: "red"}}>{this.state.error}</small>}
           {(this.state.redirect == null) ? <Redirect to="/register"/> : <Redirect to={this.state.redirect}/> }
         </Form>
       );
