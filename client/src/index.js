@@ -41,6 +41,7 @@ const normalizePort = val => {
 };
 
 axios.defaults.baseURL = process.env.PORT + '/v1';
+console.log(process.env.PORT + '/v1');
 
 const auth = {
   isAuthenticated: false,
