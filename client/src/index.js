@@ -27,7 +27,7 @@ import {
   Redirect
 } from "react-router-dom";
 
-axios.defaults.baseURL = (process.env.port || 5000) + '/v1';
+axios.defaults.baseURL = (process.env.PORT || 5000) + '/v1';
 
 const auth = {
   isAuthenticated: false,

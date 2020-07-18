@@ -2,6 +2,7 @@ import logger from 'morgan';
 import express from 'express';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
+import cookieSession  from 'cookie-session';
 import path from 'path';
 import passport from 'passport';
 import userRouter from './routes/user';
@@ -16,12 +17,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use(session({
+app.use(cookieSession({
   secret: sessionSecret,
   resave: false,
-  saveUninitialized: false,
-  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }
+  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000}
 }));
+
+// app.use(session({
+//   secret: sessionSecret,
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }
+// }));
 
 passportInitialize(passport);
 
