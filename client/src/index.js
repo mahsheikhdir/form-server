@@ -40,7 +40,7 @@ const normalizePort = val => {
   return false;
 };
 
-axios.defaults.baseURL = normalizePort(process.env.PORT || 5000) + '/v1';
+axios.defaults.baseURL = normalizePort(process.env.PORT) + '/v1';
 
 const auth = {
   isAuthenticated: false,
