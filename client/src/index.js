@@ -27,6 +27,19 @@ import {
   Redirect
 } from "react-router-dom";
 
+const normalizePort = val => {
+  const port = parseInt(val, 10);
+  if (Number.isNaN(port)) {
+    // named pipe
+    return val;
+  }
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+  return false;
+};
+
 axios.defaults.baseURL = normalizePort(process.env.PORT || 5000) + '/v1';
 
 const auth = {
