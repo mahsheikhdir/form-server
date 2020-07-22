@@ -36,7 +36,7 @@ function Landing() {
       <Jumbotron style={{marginTop: 20, textAlign: "center"}} fluid>
         <div className="container">
         <h3>Ready to try it out?</h3>
-            <Button style={{marginTop: 20}}>Create a Project</Button>
+            <Button style={{marginTop: 20}} href="/login">Create a Project</Button>
         </div>
       </Jumbotron>
 
