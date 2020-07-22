@@ -27,9 +27,9 @@ function Landing() {
 
       <Container>
         <Row>
-          <Col><InfoCard icon="arrow-forward-circle-outline" title="Send JSON" text="Using a personal API key you can send any sort of JSON data to our servers."/></Col>
-          <Col><InfoCard icon="library-outline" title="Organize with Projects" text="You can organize your JSON data using projects where each project has it's own API key."/></Col>
-          <Col><InfoCard icon="folder-open-outline" title="Export" text="Easily preview and export your data to a JSON file."/></Col>
+          <Col lg><InfoCard icon="arrow-forward-circle-outline" title="Send JSON" text="Using a personal API key you can send any sort of JSON data to our servers."/></Col>
+          <Col lg><InfoCard icon="library-outline" title="Organize with Projects" text="You can organize your JSON data using projects where each project has it's own API key."/></Col>
+          <Col lg><InfoCard icon="folder-open-outline" title="Export" text="Easily preview and export your data to a JSON file."/></Col>
         </Row>
       </Container>
 
