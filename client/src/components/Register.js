@@ -28,7 +28,7 @@ class Register extends React.Component {
             localStorage.setItem('user', res.data.createdUser[0].username);
 
             this.setState({
-                redirect: '/'
+                redirect: '/login'
             })
           } else {
             this.setState({

@@ -274,7 +274,7 @@ function ApiPage(props) {
                           </h4>
                           </Card.Header>
                           <Card.Body><InputGroup className="mb-3">
-                            <FormControl defaultValue={process.env.PORT + '/v1/' + p.api_key} />
+                            <FormControl defaultValue={window.location.href +  '/v1/' + p.api_key} />
                           </InputGroup>
                           <p>
                             POST your data to this URL. Add an additional form
