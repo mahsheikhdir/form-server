@@ -72,6 +72,7 @@ class Login extends React.Component {
           <br /><br />
           {(this.state.error !== null) && <small style={{color: "red"}}>{this.state.error}</small>}
           {(this.state.redirect == null) ? <Redirect to="/login"/> : <Redirect to={this.state.redirect}/> }
+          <p>Not registered? <a href="/register">Register.</a></p>
         </Form>
       );
     }

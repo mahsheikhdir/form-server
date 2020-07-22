@@ -86,6 +86,7 @@ class Register extends React.Component {
           <br /><br />
           {(this.state.error !== null) && <small style={{color: "red"}}>{this.state.error}</small>}
           {(this.state.redirect == null) ? <Redirect to="/register"/> : <Redirect to={this.state.redirect}/> }
+          <p>Already a user? <a href="/login">Login.</a></p>
         </Form>
       );
     }

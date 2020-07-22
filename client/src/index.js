@@ -64,20 +64,28 @@ const auth = {
 
 export default function App() {
   return (
-    <Header/>
+    <React.Fragment>
+      <Header/>
+      <Footer/>
+    </React.Fragment>
+    
+  );
+}
+
+function Footer(props) {
+  return (
+    <div>
+    </div>
   );
 }
 
 function Header(props) {
   return (
     <Router>
-      <Navbar bg="dark" variant="dark">
+      <Navbar>
         <Navbar.Brand href="/">{'JSONStore { }'}</Navbar.Brand>
         <Nav className="ml-auto">
-          <Nav.Link href="/login">Login</Nav.Link>
-          <Nav.Link href="/register">Register</Nav.Link>  
-          <Nav.Link href="/private">Dashboard</Nav.Link>
-          <Nav.Link href="/logout">Logout</Nav.Link>
+          <Nav.Link href="/private"><ion-icon size="large" name="person-circle-outline"></ion-icon></Nav.Link>
         </Nav>
       </Navbar>
       <Switch>

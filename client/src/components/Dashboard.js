@@ -10,6 +10,7 @@ import Row from 'react-bootstrap/Row';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import downloadFile from 'js-file-download';
 
 import Unauthorized from './Unauthorized';
@@ -58,17 +59,25 @@ function Projects(props) {
 
 function DashNavigation(props) {
   return (
-    <Tabs defaultActiveKey="home" id="uncontrolled-tab-example">
-      <Tab eventKey="home" title="Your API Keys">
-        <ApiPage projects={props.projects} />
-      </Tab>
-      <Tab eventKey="profile" title="Projects">
-        <ProjectPage projects={props.projects} />
-      </Tab>
-      <Tab eventKey="manage" title="Manage">
-        <ExportPage projects={props.projects} />
-      </Tab>
-    </Tabs>
+    <Card>
+      <Card.Header>
+        <Tabs
+          variant="pills"
+          defaultActiveKey="home"
+          id="uncontrolled-tab-example"
+        >
+          <Tab eventKey="home" title="Your API Keys">
+            <ApiPage projects={props.projects} />
+          </Tab>
+          <Tab eventKey="profile" title="Projects">
+            <ProjectPage projects={props.projects} />
+          </Tab>
+          <Tab eventKey="manage" title="Manage">
+            <ExportPage projects={props.projects} />
+          </Tab>
+        </Tabs>
+      </Card.Header>
+    </Card>
   );
 }
 
@@ -100,61 +109,71 @@ function ExportPage(props) {
       });
   }
   return (
-    <div className="container tab-border">
+    <Card style={{ padding: 30, margin: '30px 0px' }}>
       <Tab.Container id="left-tabs-example" defaultActiveKey="1">
-        {props.projects.length == 0 ? (
-          <p>No Projects...</p>
-        ) : (
-          <Row>
-            <Col sm={3} className="simple-border">
-              <h5 style={{ textAlign: 'center' }}>Project Name</h5>
-              <Nav variant="pills" className="flex-column">
-                {props.projects.map((p, i) => (
-                  <Nav.Item key={p.id}>
-                    <Nav.Link eventKey={p.id}>{p.name}</Nav.Link>
-                  </Nav.Item>
-                ))}
-              </Nav>
-            </Col>
-            <Col sm={9} className="simple-border">
-              <h5 style={{ textAlign: 'center' }}>Manage</h5>
-              <hr />
-              <Tab.Content>
-                {props.projects.map((p, i) => (
-                  <Tab.Pane eventKey={p.id} key={p.id}>
-                    <p>
-                      Downloads are in JSON format. Forms and new data will be
-                      updated immediately.
-                    </p>
-                    <Button onClick={(e) => getAllData(p.id)}>
-                      Download ALL Data
-                    </Button>
-                    <hr />
+        <Card.Body>
+          {props.projects.length == 0 ? (
+            <p>No Projects...</p>
+          ) : (
+            <Row>
+              <Col sm={3}>
+                <Card>
+                <Card.Header><h5 style={{ textAlign: 'center' }}>Project Name</h5> </Card.Header>
+                <Card.Body>
+                <Nav variant="pills" className="flex-column">
+                  {props.projects.map((p, i) => (
+                    <Nav.Item key={p.id}>
+                      <Nav.Link eventKey={p.id}>{p.name}</Nav.Link>
+                    </Nav.Item>
+                  ))}
+                </Nav>
+                </Card.Body>
+                </Card>
+              </Col>
+              <Col sm={9}>
+                <Card>
+                <Card.Header><h5 style={{textAlign: "center"}}>Manage</h5></Card.Header>
+                <Card.Body>
+                <Tab.Content>
+                  {props.projects.map((p, i) => (
+                    <Tab.Pane eventKey={p.id} key={p.id}>
+                      <p>
+                        Downloads are in JSON format. Forms and new data will be
+                        updated immediately.
+                      </p>
+                      <Button onClick={(e) => getAllData(p.id)}>
+                        Download ALL Data
+                      </Button>
+                      <hr />
 
-                    <p>
-                      Individual Form data can be downloaded using the buttons
-                      below.
-                    </p>
-                    {props.projects[p.id - 1]['forms'].map((f, i) => (
-                      <div key={i}>
-                        <Button onClick={(e) => getFormData(p.id, f)}>
-                          Download from {f}
-                        </Button>
-                        <br />
-                        <br />
-                      </div>
-                    ))}
-                    <hr />
-                    <p>Deleted projects cannot be restored.</p>
-                    <Button className="btn-danger">Delete Project</Button>
-                  </Tab.Pane>
-                ))}
-              </Tab.Content>
-            </Col>
-          </Row>
-        )}
+                      <p>
+                        Individual Form data can be downloaded using the buttons
+                        below.
+                      </p>
+                      {props.projects[p.id - 1]['forms'].map((f, i) => (
+                        <div key={i}>
+                          <Button onClick={(e) => getFormData(p.id, f)}>
+                            Download from {f}
+                          </Button>
+                          <br />
+                          <br />
+                        </div>
+                      ))}
+                      <hr />
+                      <p>Deleted projects cannot be restored.</p>
+                      <Button className="btn-danger">Delete Project</Button>
+                    </Tab.Pane>
+                  ))}
+                </Tab.Content>  
+                </Card.Body>
+                </Card>
+                
+              </Col>
+            </Row>
+          )}
+        </Card.Body>
       </Tab.Container>
-    </div>
+    </Card>
   );
 }
 
@@ -178,7 +197,7 @@ function ProjectPage(props) {
   }
 
   return (
-    <div className="tab-border container">
+    <Card style={{ padding: 30, margin: '30px 0px' }}>
       <div className="container">
         <Table striped bordered hover>
           <thead>
@@ -212,59 +231,69 @@ function ProjectPage(props) {
           </InputGroup.Append>
         </InputGroup>
       </div>
-    </div>
+    </Card>
   );
 }
 
 function ApiPage(props) {
   return (
-    <div className="container tab-border">
+    <Card style={{ padding: 30, margin: '30px 0px' }}>
       <Tab.Container id="left-tabs-example" defaultActiveKey="1">
         {props.projects.length == 0 ? (
           <p>No Projects...</p>
         ) : (
           <Row>
-            <Col sm={3} className="simple-border">
-              <h5 style={{ textAlign: 'center' }}>Project Name</h5>
-              <Nav variant="pills" className="flex-column">
-                {props.projects.map((p, i) => (
-                  <Nav.Item key={p.id}>
-                    <Nav.Link eventKey={p.id}>{p.name}</Nav.Link>
-                  </Nav.Item>
-                ))}
-              </Nav>
+            <Col sm={3}>
+              <Card>
+                <Card.Header>
+                  <h5 style={{ textAlign: 'center' }}>Project Name</h5>
+                </Card.Header>
+                <Card.Body>
+                  <Nav variant="pills" className="flex-column">
+                    {props.projects.map((p, i) => (
+                      <Nav.Item key={p.id}>
+                        <Nav.Link eventKey={p.id}>{p.name}</Nav.Link>
+                      </Nav.Item>
+                    ))}
+                  </Nav>
+                </Card.Body>
+              </Card>
             </Col>
-            <Col sm={9} className="simple-border">
-              <h5 style={{ textAlign: 'center' }}>API Key</h5>
-              <hr />
-              <Tab.Content>
-                {props.projects.map((p, i) => (
-                  <Tab.Pane eventKey={p.id} key={p.id}>
-                    <h4 style={{ display: 'inline-block' }}>
-                      <span className="badge badge-dark">{p.name}</span>
-                    </h4>
-                    <InputGroup className="mb-3">
-                      <InputGroup.Prepend>
-                        <InputGroup.Text id="basic-addon3">
-                          https://example.com/users/
-                        </InputGroup.Text>
-                      </InputGroup.Prepend>
-                      <FormControl defaultValue={p.api_key} />
-                    </InputGroup>
-                    <p>
-                      POST your data to this URL. Add an additional form to your
-                      url to seperate data within each project. Requests with no
-                      form will store data into the "default" form that is
-                      included with every project.
-                    </p>
-                  </Tab.Pane>
-                ))}
-              </Tab.Content>
+            <Col sm={9}>
+              <Card>
+                <Card.Header>
+                  <h5 style={{ textAlign: 'center' }}>API Key</h5>
+                </Card.Header>
+                <Card.Body>
+                  <Tab.Content>
+                    {props.projects.map((p, i) => (
+                      <Tab.Pane eventKey={p.id} key={p.id}>
+                        <Card >
+                          <Card.Header><h4>
+                            {p.name}
+                          </h4>
+                          </Card.Header>
+                          <Card.Body><InputGroup className="mb-3">
+                            <FormControl defaultValue={process.env.PORT + '/v1/' + p.api_key} />
+                          </InputGroup>
+                          <p>
+                            POST your data to this URL. Add an additional form
+                            to your url to seperate data within each project.
+                            Requests with no form will store data into the
+                            "default" form that is included with every project.
+                          </p></Card.Body>
+                          
+                        </Card>
+                      </Tab.Pane>
+                    ))}
+                  </Tab.Content>
+                </Card.Body>
+              </Card>
             </Col>
           </Row>
         )}
       </Tab.Container>
-    </div>
+    </Card>
   );
 }
 
