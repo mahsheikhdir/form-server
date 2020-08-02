@@ -3,7 +3,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/mahsheikhdir/form-server/badge.svg?branch=master)](https://coveralls.io/github/mahsheikhdir/form-server?branch=master)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c09c0a7f517fa712543d/test_coverage)](https://codeclimate.com/github/mahsheikhdir/form-server/test_coverage)
 
-A full-stack application using React and Express that lets users create and store JSON data. Users are given an API key for each of their "Projects" and can send POST requests to add new data. You can see this project here: [Link](https://jsonstor3.herokuapp.com/).
+A full-stack application using React and Express that lets users create and store JSON data for their website, or back-end projects. Users are given an API key for each of their "Projects" and can send POST requests to add new data. You can see this project here: [Link](https://jsonstor3.herokuapp.com/).
 
 ### Installing
 
